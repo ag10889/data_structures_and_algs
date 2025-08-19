@@ -8,6 +8,15 @@ package Temperatures;
  * IDE Name: IntelliJ IDEA
  */
 
+/*
+ * TO DO 
+ *  - [x] create constructors for dailyTemps, with/without parameters
+ * -[x] create setTemp mutator method
+ * -[x] ^ had to make a helper method, too complex 
+ * - [x] freezing accessor method to return data
+ * - [x] create warmest accessor method to return warmest data
+ * -[x] print the temps
+ */
 import java.util.ArrayList;
 
 public class DailyTemps {
@@ -40,17 +49,38 @@ public class DailyTemps {
         dailyTemps.add("Sunday: " + inputTemps[6]);
     }
 
-    public void setTemp(int dayIndex, double temp) {
-        if (dayIndex < 0 || dayIndex >= dailyTemps.size()) {
+    public int helpWithDays(String dayOfTheWeek) { //helper method to convert days to indices, brute force approach, O(7) :(
+        if (dayOfTheWeek.equalsIgnoreCase("Monday")) {
+            return 0;
+        } else if (dayOfTheWeek.equalsIgnoreCase("Tuesday")) {
+            return 1;
+        } else if (dayOfTheWeek.equalsIgnoreCase("Wednesday")) {
+            return 2;
+        } else if (dayOfTheWeek.equalsIgnoreCase("Thursday")) {
+            return 3;
+        } else if (dayOfTheWeek.equalsIgnoreCase("Friday")) {
+            return 4;
+        } else if (dayOfTheWeek.equalsIgnoreCase("Saturday")) {
+            return 5;
+        } else if (dayOfTheWeek.equalsIgnoreCase("Sunday")) {
+            return 6;
+        } else {
+            throw new IllegalArgumentException("Invalid day of the week.");
+        }
+    }
+
+    public void setTemp(String dayIndex, double temp) { //gets the day of the week, and updates the arrayList
+        int index = helpWithDays(dayIndex);
+        if (index < 0 || index >= dailyTemps.size()) {
             throw new IndexOutOfBoundsException("Day index must be between 0 and 6.");
         }
-        String day = dailyTemps.get(dayIndex).split(": ")[0]; //gets index 
-        dailyTemps.set(dayIndex, day + ": " + temp);
+        String day = dailyTemps.get(index).split(": ")[0]; 
+        dailyTemps.set(index, day + ": " + temp);
     }
     public String freezing(){
         int count = 0;
         for (String temp : dailyTemps) {
-            double temperature = Double.parseDouble(temp.split(": ")[1]);
+            double temperature = Double.parseDouble(temp.split(": ")[1]); //searches through the temp side 
             if (temperature < 32.0) {
                 count++;
             }
@@ -58,8 +88,8 @@ public class DailyTemps {
         return "Number of freezing days is " + count;
     }
     public String warmest(){
-        String warmestDay = dailyTemps.get(0).split(": ")[0];
-        double warmestTemp = Double.parseDouble(dailyTemps.get(0).split(": ")[1]);
+        String warmestDay = dailyTemps.get(0).split(": ")[0]; //sets monday to warmest day, just because
+        double warmestTemp = Double.parseDouble(dailyTemps.get(0).split(": ")[1]); //sets mondays temp to warmest
         for (String temp : dailyTemps) {
             if (Double.parseDouble(temp.split(": ")[1]) > warmestTemp) {
                 warmestTemp = Double.parseDouble(temp.split(": ")[1]);
