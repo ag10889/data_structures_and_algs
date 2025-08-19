@@ -6,8 +6,7 @@ public class Rectangle {
 
     public Rectangle() {
         // Default constructor initializes width and height to 1.00
-        width = 1.00;
-        height = 1.00;
+        
     }
 
     public Rectangle(double width, double height) {
