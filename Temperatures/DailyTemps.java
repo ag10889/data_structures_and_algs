@@ -9,7 +9,6 @@ package Temperatures;
  */
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class DailyTemps {
     private ArrayList<String> dailyTemps = new ArrayList<>(7);
@@ -19,7 +18,6 @@ public class DailyTemps {
      * etc
      */
     public DailyTemps() {
-        // Initialize the daily temperatures with default values
         dailyTemps.add("Monday: 0.0");
         dailyTemps.add("Tuesday: 0.0");
         dailyTemps.add("Wednesday: 0.0");
@@ -30,9 +28,9 @@ public class DailyTemps {
     }
 
     public DailyTemps(double[] inputTemps) {
-        if (inputTemps.length != 7) {
+        if (inputTemps.length != 7) { //throws issue with arrayList being wrong size
             throw new IllegalArgumentException("Array must contain exactly 7 temperatures for each day of the week.");
-        }
+        } //then inputs values at respective indices
         dailyTemps.add("Monday: " + inputTemps[0]);
         dailyTemps.add("Tuesday: " + inputTemps[1]);
         dailyTemps.add("Wednesday: " + inputTemps[2]);
@@ -46,12 +44,8 @@ public class DailyTemps {
         if (dayIndex < 0 || dayIndex >= dailyTemps.size()) {
             throw new IndexOutOfBoundsException("Day index must be between 0 and 6.");
         }
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter temperature for " + dailyTemps.get(dayIndex).split(":")[0] + ": ");
-        double newTemp = scanner.nextDouble();
-        String day = dailyTemps.get(dayIndex).split(":")[0];
-        dailyTemps.set(dayIndex, day + ": " + newTemp);
-        scanner.close();
+        String day = dailyTemps.get(dayIndex).split(": ")[0]; //gets index 
+        dailyTemps.set(dayIndex, day + ": " + temp);
     }
     public String freezing(){
         int count = 0;
