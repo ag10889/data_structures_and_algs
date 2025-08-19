@@ -7,7 +7,7 @@
  * IDE Name: IntelliJ IDEA
  */
 
-package main.java;
+package Rectangle;
 
 public class Rectangle {
     private double width = 1.00;

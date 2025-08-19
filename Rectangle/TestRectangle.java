@@ -6,7 +6,7 @@
  * Assignment: 1
  * IDE Name: IntelliJ IDEA
  */
-package main.java;
+package Rectangle;
 import java.util.Scanner;
 
 public class TestRectangle extends Rectangle {
