@@ -1,3 +1,12 @@
+/*
+ * Name : Alex George
+ * Class: CS 3305/SectionW04
+ * Term: Fall 2025
+ * Instructor: Prof. Wang
+ * Assignment: 1
+ * IDE Name: IntelliJ IDEA
+ */
+
 package main.java;
 
 public class Rectangle {
