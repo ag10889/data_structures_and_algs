@@ -3,5 +3,5 @@ This is during fall 25 cs3305. Trying to use terminal commands to better underst
 TO DO:
 - [x] Rectangle
 - [x] Rectangle Test
-- [] DailyTemps
+- [x] DailyTemps
 - [] TestTemps
