@@ -6,6 +6,10 @@
  * Assignment: 1
  * IDE Name: IntelliJ IDEA
  */
+/*
+ * -[x] initially asks for width, followed by height
+ * --[x] outputs default and loaded constructor
+ */
 package Rectangle;
 import java.util.Scanner;
 

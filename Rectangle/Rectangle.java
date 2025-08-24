@@ -7,6 +7,11 @@
  * IDE Name: IntelliJ IDEA
  */
 
+/*
+ * -[x] default and loaded constructor
+ * -[x] mutator and accessor methods
+ * -[x] toString method for final printing
+ */
 package Rectangle;
 
 public class Rectangle {
@@ -14,7 +19,7 @@ public class Rectangle {
     private double height = 1.00;
 
     public Rectangle() {
-        // Default constructor initializes width and height to 1.00
+        // default constructor initializes width and height to 1.00
         
     }
 
