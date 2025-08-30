@@ -11,13 +11,15 @@ import java.util.Scanner;
 
  /* TODO
   *  -[x] create public static to have a menu bar with selection choices
-  * -[] create choices read class size (some sort of an array)
+  * -[X] create choices read class size (some sort of int)
   * -[] read class grades (maybe some sort of a array)
   * -[] compute class average
   * -[] exit
   */
 public class AverageGrades {
     public static void main(String[] args) {
+        int classSize = 0;
+        int[] grades = null;
         while(true){
             System.out.println("Main Menu");
             System.out.println("1. Read class size");
@@ -28,7 +30,7 @@ public class AverageGrades {
 
             Scanner scanner = new Scanner(System.in);
             int option = scanner.nextInt();
-
+            
             switch (option) {
                 case 1:
                     // TODO: Implement read class size
@@ -41,11 +43,22 @@ public class AverageGrades {
                     break;
                 case 4:
                     System.out.println("Exiting program.");
-                    System.exit(0);
                     scanner.close();
                     break;
             }
         }
     }
-    
+    public static double findAveragee(int[] grades, int classSize) {
+    if (grades == null || grades.length == 0) {
+        System.out.println("No grades available to compute average.");
+        return -1;  // Meaningful value indicating no grades present
+    }
+    double sum = grades[0];
+    if (classSize == 1) {
+        return sum; // Base case: only one grade
+    } else {
+        return sum + findAveragee(java.util.Arrays.copyOfRange(grades, 1, grades.length), classSize - 1);
+    }
+}
+
 }
