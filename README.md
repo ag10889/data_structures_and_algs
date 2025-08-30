@@ -4,4 +4,6 @@ TO DO:
 - [x] Rectangle
 - [x] Rectangle Test
 - [x] DailyTemps
-- [] TestTemps
+- [X] TestTemps
+- [X] Vowels
+- [] Grades
