@@ -65,14 +65,16 @@ public class AverageGrades {
     public static double findAverage(int[] grades, int classSize) {
         if (grades == null || grades.length == 0) {
             System.out.println("No grades available to compute average.");
-            return -1;  // Meaningful value indicating no grades present
-            }
-            double sum = grades[0];
-            if (classSize == 1) {
-                return sum; // Base case: only one grade
-            } else {
-                return sum + findAverage(java.util.Arrays.copyOfRange(grades, 1, grades.length), classSize - 1);
-            }
+            return -1;
         }
+        return recursiveSum(grades, classSize, 0) / classSize;
+    }
+
+    private static double recursiveSum(int[] grades, int classSize, int index) {
+        if (index == classSize) {
+            return 0;
+        }
+        return grades[index] + recursiveSum(grades, classSize, index + 1);
+    }
 
 }
