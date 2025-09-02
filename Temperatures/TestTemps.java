@@ -1,6 +1,14 @@
 package Temperatures;
 import java.util.Scanner;
 /*
+ * Name : Alex George
+ * Class: CS 3305/SectionW04
+ * Term: Fall 2025
+ * Instructor: Prof. Wang
+ * Assignment: 1
+ * IDE Name: IntelliJ IDEA
+ */
+/*
  * TO DO
  * -[x] make some data
  * -[x] instantiate a default constructor
