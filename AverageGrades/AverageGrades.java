@@ -15,7 +15,6 @@ import java.util.Scanner;
   * -[X] create choices read class size (some sort of int)
   * -[X] read class grades (maybe some sort of a array)
   * -[X] compute class average, round to 2 decimal 
-  * -[] implement propper error handling for exception in thread
   * -[X] exit
   */
 public class AverageGrades {
