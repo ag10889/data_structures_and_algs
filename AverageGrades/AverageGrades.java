@@ -6,14 +6,15 @@ import java.util.Scanner;
  * Term: Fall 2025
  * Instructor: Prof. Wang
  * Assignment: 2
- * IDE Name: VS Code
+ * IDE Name: IntelliJ IDEA
  */
 
  /* TODO
   *  -[x] create public static to have a menu bar with selection choices
   * -[X] create choices read class size (some sort of int)
   * -[X] read class grades (maybe some sort of a array)
-  * -[X] compute class average
+  * -[X] compute class average, round to 2 decimal 
+  * -[] implement propper error handling for exception in thread
   * -[X] exit
   */
 public class AverageGrades {
@@ -67,7 +68,7 @@ public class AverageGrades {
             System.out.println("No grades available to compute average.");
             return -1; //base case
         }
-        return recursiveSum(grades, classSize, 0) / classSize;
+        return Math.round(recursiveSum(grades, classSize, 0) / classSize * 100.0) / 100.0; //like multiplying and diving by 2 for binary shifting, just with decimals. 
     }
 
     private static double recursiveSum(int[] grades, int classSize, int index) {
