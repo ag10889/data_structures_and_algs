@@ -23,41 +23,27 @@ public class AverageGrades {
     public static void main(String[] args) {
         int classSize = 0;
         int[] grades = null;
-        boolean haveGrades = false;
 
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
                 printMenu();
-                int option = readMenuOption(scanner, "Enter option number: ");
-
-                /*
-                 * Holy error handling ahead 
-                 * every case has multiple error checks, from sizes, nulls, inputs, and resource usage 
-                 * and resource closure
-                 * 
-                 */
+                int option = readMenuOption(scanner, "Enter option number:");
                 switch (option) {
                     case 1:
                         // Read a positive class size
-                        classSize = readPositiveInt(scanner, "Enter class size: ");
+                        System.out.println("Enter class size: ");
+                        classSize = scanner.nextInt();
+                        System.out.println("You entered class size: " + classSize);
                         grades = new int[classSize];
-                        haveGrades = false; // reset since size changed
                         break;
                     case 2:
-                        if (classSize <= 0 || grades == null) {
-                            System.out.println("Please set the class size first (option 1).");
-                            break;
-                        }
                         System.out.println("Enter class grades:");
                         for (int i = 0; i < classSize; i++) {
-                            grades[i] = readIntInRange(scanner, 0, 100);
+                            grades[i] = scanner.nextInt();
                         }
-                        haveGrades = true;
+                        System.out.println("You entered grades: " + printGrades(grades));
                         break;
                     case 3:
-                        if (classSize <= 0 || (grades == null && haveGrades == false)) {
-                            System.out.println("Please see the previous options. ");
-                        }
                         double average = findAverage(grades, classSize);
                         System.out.printf("Class average: %.2f%n", average);
                         break;
@@ -80,32 +66,18 @@ public class AverageGrades {
         System.out.println("4. Exit Program");
     }
 
+    private static String printGrades(int[] grades) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < grades.length; i++) {
+            sb.append(grades[i]).append(" ");
+        }
+        return sb.toString();
+    }
+
     private static int readMenuOption(Scanner sc, String prompt) { //takes the menu, and reads the imput option (had error handling expections) 
         //takes the menu input, and validates it (1-4) but also checking for non ints and then discarding those attempts
         System.out.print(prompt);
-        while (!sc.hasNextInt()) { //s/o java.util.scanner 
-            System.out.println("Not a number. Try 1–4.");
-            sc.next(); // discards the invalid response
-            System.out.print("Enter option number: ");
-        }
         return sc.nextInt(); //returns the checked value :)
-    }
-
-    private static int readPositiveInt(Scanner sc, String prompt) { 
-        System.out.print(prompt); 
-        while (true) {
-            int val = sc.nextInt(); //until reponse is valid
-            if (val >= 1) return val; 
-            System.out.print("Enter a class size >= 1: ");
-        }
-    }
-
-    private static int readIntInRange(Scanner sc, int min, int max) { //handled problems with negative grades
-        while (true) {
-            int val = sc.nextInt();
-            if (val >= min && val <= max) return val; //checks that its positive and within a normal grade range (0-100)
-            System.out.printf("Please enter a value between %d and %d: ", min, max); //polietly asks for a valid input between min and max
-        }
     }
 
     public static double findAverage(int[] grades, int classSize) {
