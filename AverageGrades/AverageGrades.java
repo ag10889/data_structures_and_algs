@@ -73,14 +73,12 @@ public class AverageGrades {
         return sb.toString();
     }
 
-    private static int readMenuOption(Scanner sc, String prompt) { //takes the menu, and reads the imput option (had error handling expections) 
-        //takes the menu input, and validates it (1-4) but also checking for non ints and then discarding those attempts
+    private static int readMenuOption(Scanner sc, String prompt) { 
         System.out.print(prompt);
-        return sc.nextInt(); //returns the checked value :)
+        return sc.nextInt(); 
     }
 
-    public static double findAverage(int[] grades, int classSize) {
-        // bc we validated everything beforehand, we chilling
+    public static double findAverage(int[] grades, int classSize) {     
         double sum = recursiveSum(grades, classSize, 0);
         return Math.round((sum / classSize) * 100.0) / 100.0; //like binary multiplication and division to shift spaces 
     }
