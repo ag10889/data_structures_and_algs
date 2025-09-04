@@ -22,11 +22,7 @@ public class Vowels {
         String input = "";
 
         while (true) {
-            System.out.println("Main Menu");
-            System.out.println("1. Read input string");
-            System.out.println("2. Compute number of vowels");
-            System.out.println("3. Exit program");
-            System.out.println("Enter option number");
+            printMenu();
 
             int option = scan.nextInt();
             scan.nextLine();  // consume the newline character
@@ -34,7 +30,7 @@ public class Vowels {
             if (option == 1) {
                 System.out.println("Enter a string:");
                 input = scan.nextLine(); 
-            } else if (option == 2) {
+            } else if (option == 2) { 
                 System.out.println("Number of vowels: " + countVowels(input));
             } else if (option == 3) {
                 System.out.println("Exiting the program.");
@@ -45,12 +41,20 @@ public class Vowels {
             }
         }
     }
+    private static void printMenu(){
+        System.out.println("Main Menu");
+        System.out.println("1. Read input string");
+        System.out.println("2. Compute number of vowels");
+        System.out.println("3. Exit program");
+        System.out.println("Enter option number");
+    }
+
     public static int countVowels(String s) {
         if (s == null || s.length() == 0) {
             return 0; // base case
         }
         char first = Character.toLowerCase(s.charAt(0));
-        int count = (first == 'a' || first == 'e' || first == 'i' || first == 'o' || first == 'u') ? 1 : 0;
+        int count = (first == 'a' || first == 'e' || first == 'i' || first == 'o' || first == 'u') ? 1 : 0; //checks, ignores commas
         return count + countVowels(s.substring(1)); 
     }
 }
