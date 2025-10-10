@@ -29,10 +29,11 @@ import java.util.Scanner;;
 public class RadixSort {
     public static void extractDigit(int array[], int value, Queue<Integer>[] buckets) {
         for (int i = 0; i < array.length; i++) {
-            int digit = (array[i] / (int)Math.pow(10, value)) % 10;
-            buckets[digit].enqueue(array[i]);
+            int digit = (array[i] / (int)Math.pow(10, value)) % 10; //extracts rightmost digit in value
+            buckets[digit].enqueue(array[i]); //enqueues rightmost digit into buckets queue from array value i
         }
-        int index = 0;
+        //ddequeue process 
+        int index = 0; 
         for (int i = 0; i < buckets.length; i++) {
             while (!buckets[i].isEmpty()) {
                 array[index++] = buckets[i].dequeue();
