@@ -14,7 +14,9 @@ import java.util.Scanner;;
  * -[X] prompt user for option from printMenu method
  * -[X] promopt user for data 
  * -[] print contents before and after being sorted 
- * -[] do radiz sort with Queue buckets
+ * -[] do radiz sort with one set of  Queue buckets
+ * -[X] extractDigit method
+ * -[X] countDigits method
  */
 
  /*
@@ -25,7 +27,33 @@ import java.util.Scanner;;
   */
 
 public class RadixSort {
-    
+    public static void extractDigit(int array[], int value, Queue<Integer>[] buckets) {
+        for (int i = 0; i < array.length; i++) {
+            int digit = (array[i] / (int)Math.pow(10, value)) % 10;
+            buckets[digit].enqueue(array[i]);
+        }
+        int index = 0;
+        for (int i = 0; i < buckets.length; i++) {
+            while (!buckets[i].isEmpty()) {
+                array[index++] = buckets[i].dequeue();
+            }
+        }
+        
+    }
+    public static int countDigits(int array[]) {
+         int max = array[0];
+         for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+         }
+         int digits = 0;
+         for (int val = max; val > 0; val /= 10) {
+            digits++;
+         }
+         return digits;
+    }
+
     public static void printMenu() {
         System.out.println("\nMain Menu:");
         System.out.println("1 - Read array size");
@@ -55,15 +83,26 @@ public class RadixSort {
                 option = s1.nextInt();
             }
             if (option == 3) {
-                System.out.print("Array values before sorting: ");
-                for (int num : array) {
-                    System.out.print(num + " ");
+                System.out.println("Array before sorting: ");
+                for (int i = 0; i < array.length; i++) {
+                    System.out.print(array[i] + " ");
                 }
                 System.out.println();
+                int digits = countDigits(array);
                 Queue<Integer>[] buckets = new Queue[10];
                 for (int i = 0; i < buckets.length; i++) {
                     buckets[i] = new Queue<Integer>();
                 }
+                for (int i = 0; i < digits; i++) {
+                    extractDigit(array, i, buckets);
+                }
+                System.out.println("Array after sorting: ");
+                for (int i = 0; i < array.length; i++) {
+                    System.out.print(array[i] + " ");
+                }
+                System.out.println();
+                printMenu();
+                option = s1.nextInt();
             }
             else {
                 System.out.println("Invalid option. Plrease try again.");
